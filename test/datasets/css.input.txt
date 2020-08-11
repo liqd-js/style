@@ -1,0 +1,72 @@
+$foo: barova stolicka;
+
+:root {
+    --main-bg-color: $foo;
+  }
+
+@no-user-select
+{
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@test-generatora
+{
+    background: lightskyblue;
+    color: red;
+}
+
+@test-generatora-s-parametrom( $parameter1 : a, $parameter2 : b )
+{
+    text-align: $parameter1;
+    vertical-align: $parameter2;
+}
+
+@keyframes slidein {
+    from {
+      transform: translateX(0%);
+    }
+  
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+html, body
+{
+    color: #fff;
+    text-align: center;
+    border: 1px solid red;
+
+    &:hover
+    {
+        color: blue;
+
+        .test
+        {
+          background:red;
+        }
+
+        .generator
+        {
+          farba: modra;
+          @test-generatora;
+          @test-generatora-s-parametrom( left );
+          @no-user-select;
+        }
+
+        &.test
+        {
+          hura: to je;
+        }
+
+        &:not(red)
+        {
+          background: red;
+        }
+    }
+
+    background-color: var(--my-var, var(--my-background, pink));
+}

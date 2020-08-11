@@ -1,0 +1,35 @@
+{
+  "name": "@liqd-js/style",
+  "description": "Style library",
+  "version": "0.0.1",
+  "author": "radixxko",
+  "license": "MIT",
+  "main": "lib/style.js",
+  "homepage": "https://liqd-js.com/lib/style",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/liqd-js/style.git"
+  },
+  "keywords": [
+    "style",
+    "css",
+    "sass",
+    "liqd-js",
+    "liqd"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.4",
+    "mocha": "^5.0.4",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@liqd-js/parser": "^1.0.0"
+  }
+}

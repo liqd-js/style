@@ -1,0 +1,66 @@
+:ws
+    /[\s\n]*/
+
+:comment
+    "//" /[^\n]*/
+    "/*" /[\s\S]*?\*\//
+
+:name
+    =/[a-zA-Z_-][a-zA-Z0-9_\-]*/
+
+:selector
+    =/[^${};@\/][^${};@]*?(?=\s*\{)/
+
+:variable
+    "$" =:name
+
+    $ => '$' + $.name
+
+:argument
+    =:variable :ws ":" :ws default=:value
+    =:variable
+
+:generator
+    "@" =:name :ws "(" :ws arguments=...[/\s*,\s*/]:argument :ws ")" :ws "{" :ws =...[:ws]:style :ws "}"
+    "@" =:name :ws "{" :ws =...[:ws]:style :ws "}"
+
+:generate
+    "@" generator=:name :ws "(" :ws arguments=...[/\s*,\s*/]:value :ws ")" :ws ";"
+    "@" generator=:name :ws ";"
+
+:value_parentheses
+    "(" :ws blocks=?...:value_parentheses :ws ")"
+    =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^()'"]+)/
+
+    $ => $.hasOwnProperty( 'blocks' ) ? '(' + $.blocks.join('') + ')' : $
+
+:value_block
+    "(" :ws blocks=?...:value_parentheses :ws ")"
+    =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^,;{}()"]*)/
+
+    $ => $.hasOwnProperty( 'blocks' ) ? '(' + $.blocks.join('') + ')' : $
+
+:value
+    blocks=...:value_block
+
+    $ => $.blocks.join('').trim()
+
+:assignment
+    =:variable :ws ":" :ws =:value :ws ";"
+
+:rule
+    identifier=/@(font\-face|keyframes|media)/ :ws =?:selector :ws "{" :ws =...[:ws]:style :ws "}"
+
+:style
+    :comment
+    property=:name :ws ":" :ws =:value :ws ";"
+    =:selector :ws "{" :ws =...[:ws]:style :ws "}"
+    =:assignment
+    =:generator
+    =:generate
+    =:rule
+
+:main
+    :ws =...[:ws]:style :ws
+
+    $ => $.style
