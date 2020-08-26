@@ -18,11 +18,15 @@ $foo: barova stolicka;
     color: red;
 }
 
-@test-generatora-s-parametrom( $parameter1 : a, $parameter2 : b )
+@test-generatora-s-parametrom( $parameter1 : a, $parameter2 : b, $parameter3 )
 {
     text-align: $parameter1;
     vertical-align: $parameter2;
+    farba: $parameter3;
 }
+
+from {
+      transform: translateX(0%);}
 
 @keyframes slidein {
     from {
@@ -60,6 +64,11 @@ html, body
         &.test
         {
           hura: to je;
+        }
+
+        @media only screen and (max-width: 600px) 
+        {
+          color: red;
         }
 
         &:not(red)
