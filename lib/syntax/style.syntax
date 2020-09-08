@@ -36,7 +36,7 @@
 
 :value_block
     "(" :ws blocks=?...:value_parentheses :ws ")"
-    =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^,;{}()"]*)/
+    =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^,;{}()"']*)/
 
     $ => $.hasOwnProperty( 'blocks' ) ? '(' + $.blocks.join('') + ')' : $
 
@@ -45,15 +45,18 @@
 
     $ => $.blocks.join('').trim()
 
+:values
+    =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^;{}"'])+?(?=\s*[;{}])/
+
 :assignment
-    =:variable :ws ":" :ws =:value :ws ";"
+    =:variable :ws ":" :ws value=:values :ws ";"
 
 :rule
     identifier=/@(font\-face|keyframes|media)/ :ws =?:selector :ws "{" :ws =...[:ws]:style :ws "}"
 
 :style
     :comment
-    property=:name :ws ":" :ws =:value :ws ";"
+    property=:name :ws ":" :ws value=:values :ws ";"
     =:selector :ws "{" :ws =...[:ws]:style :ws "}"
     =:assignment
     =:generator

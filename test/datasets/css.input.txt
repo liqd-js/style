@@ -43,6 +43,7 @@ html, body
     color: #fff;
     text-align: center;
     border: 1px solid red;
+    text-shadow: 1px 1px 3px red, 1px 1px 3px black; 
 
     &:hover
     {
