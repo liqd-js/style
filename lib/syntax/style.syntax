@@ -57,13 +57,13 @@
 :style
     :comment
     property=:name :ws ":" :ws value=:values :ws ";"
-    =:selector :ws "{" :ws =...[:ws]:style :ws "}"
+    =:selector :ws "{" :ws =?...[:ws]:style :ws "}"
     =:assignment
     =:generator
     =:generate
     =:rule
 
 :main
-    :ws =...[:ws]:style :ws
+    :ws =?...[:ws]:style :ws
 
     $ => $.style

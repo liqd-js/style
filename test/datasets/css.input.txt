@@ -78,5 +78,26 @@ html, body
         }
     }
 
+    @media ( min-aspect-ratio: 4/3 )
+    {
+      div
+      {
+        background: #9af; /* blue */
+      }
+    }
+
+    @media ( min-aspect-ratio: 8/5 )
+    {
+      div
+      {
+        background: #9af; /* blue */
+      }
+    }
+
     background-color: var(--my-var, var(--my-background, pink));
+}
+
+@media ( phone )
+{
+  html{ background: red; }
 }
