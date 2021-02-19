@@ -59,9 +59,9 @@
     property=:name :ws ":" :ws value=:values :ws ";"
     =:selector :ws "{" :ws =?...[:ws]:style :ws "}"
     =:assignment
+    =:rule
     =:generator
     =:generate
-    =:rule
 
 :main
     :ws =?...[:ws]:style :ws
