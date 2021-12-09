@@ -1,7 +1,7 @@
 {
   "name": "@liqd-js/style",
   "description": "Style library",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "radixxko",
   "license": "MIT",
   "main": "lib/style.js",

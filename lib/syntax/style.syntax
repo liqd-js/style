@@ -52,7 +52,7 @@
     =:variable :ws ":" :ws value=:values :ws ";"
 
 :rule
-    identifier=/@(font\-face|keyframes|media)/ :ws =?:selector :ws "{" :ws =...[:ws]:style :ws "}"
+    identifier=/@(font\-face|[a-zA-Z_-]*keyframes|media)/ :ws =?:selector :ws "{" :ws =...[:ws]:style :ws "}"
 
 :style
     :comment
