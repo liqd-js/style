@@ -28,6 +28,9 @@
     "@" generator=:name :ws "(" :ws arguments=...[/\s*,\s*/]:value :ws ")" :ws ";"
     "@" generator=:name :ws ";"
 
+:transformer
+    "#" =:name :ws "(" :ws arguments=...[/\s*,\s*/]:argument :ws ")" :ws "{" :ws literal=/[^{}]+/ :ws "}"
+
 :value_parentheses
     "(" :ws blocks=?...:value_parentheses :ws ")"
     =/("(([^\\"]|\\.)*?)"|'(([^\\']|\\.)*?)'|[^()'"]+)/
@@ -62,6 +65,7 @@
     =:rule
     =:generator
     =:generate
+    =:transformer
 
 :main
     :ws =?...[:ws]:style :ws
